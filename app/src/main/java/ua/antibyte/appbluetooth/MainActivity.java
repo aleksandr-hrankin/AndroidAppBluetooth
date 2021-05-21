@@ -142,7 +142,11 @@ public class MainActivity extends AppCompatActivity {
         return new ScanCallback() {
             @Override
             public void onScanResult(int callbackType, ScanResult result) {
-                tvResult.append("Divice name: " + result.getDevice().getName() + "rssi:" + result.getRssi() + "\n");
+                tvResult.append("--- " + result.getDevice().getName() + " --- \n");
+                tvResult.append("device address: " + result.getDevice().getAddress() + "\n");
+                tvResult.append("device type: " + result.getDevice().getType() + "\n");
+                tvResult.append("rssi: " + result.getRssi() + "\n");
+                tvResult.append("\n");
             }
 
             @Override
