@@ -1,6 +1,7 @@
 package ua.antibyte.appbluetooth;
 
 import android.Manifest;
+
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.le.BluetoothLeScanner;
@@ -11,6 +12,7 @@ import android.bluetooth.le.ScanSettings;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             tvResult.setText("Start Scanning \n");
             btnStartScan.setVisibility(View.INVISIBLE);
             btnStopScan.setVisibility(View.VISIBLE);
-            new Thread(() -> btScanner.startScan(getScanFilters(), getScanSettings(), getScanCallback()));
+            AsyncTask.execute(() -> btScanner.startScan(getScanFilters(), getScanSettings(), getScanCallback()));
         };
     }
 
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             tvResult.append("Stopped Scanning \n");
             btnStartScan.setVisibility(View.VISIBLE);
             btnStopScan.setVisibility(View.INVISIBLE);
-            new Thread(() -> btScanner.stopScan(getScanCallback()));
+            AsyncTask.execute(() -> btScanner.stopScan(getScanCallback()));
         };
     }
 
